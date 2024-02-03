@@ -1,0 +1,26 @@
+- name: PLAY-1 TASK-1 Mongodb repo creation
+  ansible.builtin.copy:
+    src: mongo.repo
+    dest: /etc/yum.repos.d/mongo.repo
+
+- name: PLAY-1 TASK-2 Mongodb installation
+  ansible.builtin.package:
+    name: mongodb-org
+    state: present
+
+- name: PLAY-1 TASK-3 Enable MongoDB service
+  systemd:
+    name: mongod
+    enabled: yes
+    state: started
+
+- name: PLAY-1 TASK-4 replace 127.0.0.1 to 0.0.0.0 in mongod.conf
+  ansible.builtin.replace:
+    path: /etc/mongod.conf
+    regexp: '127.0.0.1'
+    replace: '0.0.0.0'
+
+- name: PLAY-1 TASK-5 Mongodb service restart
+  ansible.builtin.service:
+    name: mongod
+    state: restarted
