@@ -2,10 +2,10 @@
   ansible.builtin.import_role:
     name: common
     tasks_from: 
-    - nodejs
-    - user_creation
-    - code_dnld_install
-    - sft_service_dmn_rld
+    - nodejs.yaml
+    - user_creation.yaml
+    - code_dnld_install.yaml
+    - sft_service_dmn_rld.yaml
 
 
     
