@@ -1,21 +1,19 @@
-- name: PLAY-1 TASK-13 Data load existance check
-  ansible.builtin.shell: mongo --host mongodb.hellodns.xyz --quiet --eval 'db = db.getSiblingDB("catalogue"); db.products.count()'
-  register: load_output
-  when: software == "catalogue"    #keep in double quotes 
-    
-- name: PLAY-1 TASK-14 Data load if not exists
-  ansible.builtin.shell: mongo --host mongodb.hellodns.xyz < /app/schema/catalogue.js
-  when: load_output.stdout == "0" and software == "catalogue"     #keep in double quotes
+- name: "get the catalogue entries count"
+  ansible.builtin.shell:  mongo --host mongodb.hellodns.xyz --quiet --eval 'db = db.getSiblingDB("catalogue"); db.products.count()'
+  register: products_count
+  when: software == "catalogue"
 
-- name: PLAY-1 TASK-13 Data load existance check
-  ansible.builtin.shell: mongo --host mongodb.hellodns.xyz --quiet --eval 'db = db.getSiblingDB("users"); db.users.count()'
-  register: load_output
-  when: software == "user"     #keep in double quotes
+- name: "get the user entries count"
+  ansible.builtin.shell:  mongo --host mongodb.hellodns.xyz --quiet --eval 'db = db.getSiblingDB("users"); db.users.count()'
+  register: users_count
+  when: software == "user"
 
-- name: PLAY-1 TASK-14 Data load if not exists
-  ansible.builtin.shell: mongo --host mongodb.hellodns.xyz < /app/schema/user.js
-  when: load_output.stdout == "0" and software == "user"     #keep in double quotes
+- name: "load catalogue data"
+  ansible.builtin.shell: "mongo --host mongodb.hellodns.xyz < /app/schema/{{software}}.js"
+  when: software == "catalogue" and products_count.stdout == "0"  # keep double quotes
+  #ignore_errors: true
 
-
-	
-	
+- name: "load user data"
+  ansible.builtin.shell: "mongo --host mongodb.hellodns.xyz < /app/schema/{{software}}.js"
+  when: software == "user" and users_count.stdout == "0"  # keep double quotes
+  #ignore_errors: true
