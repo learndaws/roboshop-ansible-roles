@@ -3,7 +3,7 @@
       src: "{{software}}.service"
       dest: "/etc/systemd/system/{{software}}.service"
 
-  - name: PLAY-1 TASK-10 DAEMON RELOAD and service restart and enable
+  - name: DAEMON RELOAD and service restart and enable
     ansible.builtin.systemd_service:
       daemon_reload: true
       name: "{{software}}"
