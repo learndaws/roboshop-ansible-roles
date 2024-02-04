@@ -1,0 +1,11 @@
+  - name: setting systemd {{software}} service
+    ansible.builtin.copy:
+      src: {{software}}.service
+      dest: /etc/systemd/system/{{software}}.service
+
+  - name: DAEMON RELOAD and service restart and enable
+    ansible.builtin.systemd_service:
+      daemon_reload: true
+      name: {{software}}
+      enabled: yes
+      state: started
