@@ -1,7 +1,7 @@
 - name: PLAY-1 TASK-13 Data load existance check
   ansible.builtin.command: mongo --host mongodb.hellodns.xyz --quiet --eval 'db = db.getSiblingDB("catalogue"); db.products.count()'
   register: load_output
-  when: software == "catalogue"     #keep in double quotes 
+  when: software == "catalogue"    #keep in double quotes 
     
 - name: PLAY-1 TASK-14 Data load if not exists
   ansible.builtin.command: mongo --host mongodb.hellodns.xyz < /app/schema/catalogue.js
@@ -11,9 +11,9 @@
   ansible.builtin.command: mongo --host mongodb.hellodns.xyz --quiet --eval 'db = db.getSiblingDB("users"); db.users.count()'
   register: load_output
   when: software == "user"     #keep in double quotes
-    
+
 - name: PLAY-1 TASK-14 Data load if not exists
   ansible.builtin.command: mongo --host mongodb.hellodns.xyz < /app/schema/user.js
-  when: load_output.stdout == "0" and software == "user"     #keep in double quotes  
+  when: load_output.stdout == "0" and software == "user"     #keep in double quotes
 	
 	
