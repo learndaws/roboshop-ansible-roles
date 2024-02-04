@@ -1,0 +1,5 @@
+  - name: start and enable user
+    ansible.builtin.service:
+      name: "{{software}}"
+      state: restarted
+      enabled: yes

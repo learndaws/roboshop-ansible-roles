@@ -13,15 +13,20 @@
     name: common
     tasks_from: code_dnld_install
 
-- name: PLAY-1 TASK- nodejs intsallation
+- name: PLAY-1 TASK-4 nodejs intsallation
   ansible.builtin.import_role:
     name: common
     tasks_from: sft_service_dmn_rld
 
-- name: PLAY-1 TASK- nodejs intsallation
+- name: PLAY-1 TASK-5 nodejs intsallation
   ansible.builtin.import_role:
     name: common
     tasks_from: mongodb_client_install
+
+- name: PLAY-1 TASK-6 nodejs intsallation
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: data_load
 
 
     
