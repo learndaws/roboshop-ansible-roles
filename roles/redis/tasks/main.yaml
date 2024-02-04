@@ -1,0 +1,22 @@
+- name: PLAY-1 TASK-1 Install the nginx rpm from a remote repo
+  ansible.builtin.command: dnf install https://rpms.remirepo.net/enterprise/remi-release-8.rpm -y
+
+- name: PLAY-1 TASK-2 Enable Redis 6.2 from package streams
+  ansible.builtin.command: dnf module enable redis:remi-6.2 -y
+
+- name: PLAY-1 TASK-3 Install Redis
+  ansible.builtin.dnf:
+    name: redis
+    state: present
+
+- name: PLAY-1 TASK-4 replace 127.0.0.1 with 0.0.0.0
+  ansible.builtin.replace:
+    path: /etc/redis.conf
+    regexp: '127.0.0.1'
+    replace: '0.0.0.0'
+
+- name: PLAY-1 TASK-5 Start & Enable Redis Service
+  ansible.builtin.systemd_service:
+    name: redis
+    enabled: true
+    state: restarted
