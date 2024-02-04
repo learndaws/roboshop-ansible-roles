@@ -1,4 +1,4 @@
 - name: TASK-1
   ansible.builtin.import_role:
     name: common
-    tasks_from: nodejs,user_creation
+    tasks_from: nodejs.yaml,user_creation.yaml
