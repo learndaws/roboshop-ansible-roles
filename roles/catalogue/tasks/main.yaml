@@ -1,21 +1,13 @@
 - name: PLAY-1 TASK-1 nodejs intsallation
   ansible.builtin.import_role:
     name: common
-    tasks_from: nodejs
+    tasks_from: 
+    - nodejs
+    - user_creation
+    - code_dnld_install
+    - sft_service_dmn_rld
 
-- name: PLAY-1 TASK-2 nodejs intsallation
-  ansible.builtin.import_role:
-    name: common
-    tasks_from: user_creation
 
-- name: PLAY-1 TASK-3 nodejs intsallation
-  ansible.builtin.import_role:
-    name: common
-    tasks_from: code_dnld_install
-
-- name: PLAY-1 TASK- nodejs intsallation
-  ansible.builtin.import_role:
-    name: common
-    tasks_from: sft_service_dmn_rld
+    
 
     
