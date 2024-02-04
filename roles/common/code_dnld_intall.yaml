@@ -1,0 +1,20 @@
+- name: PLAY-1 TASK-5 Directory Creation
+  ansible.builtin.file:
+    path: /app
+    state: directory
+
+- name: PLAY-1 TASK-6 Download application code
+  ansible.builtin.get_url:
+    url: https://roboshop-builds.s3.amazonaws.com/catalogue.zip
+    dest: /tmp/catalogue.zip
+
+- name: PLAY-1 TASK-7 unzip downloaded code
+  ansible.builtin.unarchive:
+    src: /tmp/catalogue.zip
+    dest: /app
+    remote_src: yes
+
+- name: PLAY-1 TASK-8 npm installation
+  community.general.npm:
+    name: npm
+    path: /app
