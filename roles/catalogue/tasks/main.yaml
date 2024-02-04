@@ -1,7 +1,6 @@
-- name: PLAY-1 TASK-1 nodejs intsallation
+- name: TASK-1
   ansible.builtin.import_role:
     name: common
     tasks_from: 
-    - nodejs.yaml
-    - user_creation.yaml
-    
+      - nodejs
+      - user_creation
