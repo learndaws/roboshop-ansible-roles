@@ -1,0 +1,10 @@
+- name: disable nodejs default version
+  ansible.builtin.command: dnf module disable nodejs -y
+
+- name: enable nodejs:18
+  ansible.builtin.command: dnf module enable nodejs:18 -y
+
+- name: nodejs:18 Installation
+  ansible.builtin.package:
+    name: nodejs
+    state: present
