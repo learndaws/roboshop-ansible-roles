@@ -1,0 +1,39 @@
+- name: PLAY-1 TASK-1
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: nodejs
+
+- name: PLAY-1 TASK-2
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: user_creation
+
+- name: PLAY-1 TASK-3
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: code_dnld_install
+
+- name: PLAY-1 TASK-4
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: sft_service_dmn_rld
+
+- name: PLAY-1 TASK-5
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: mongodb_client_install
+
+- name: PLAY-1 TASK-6
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: data_load
+
+- name: PLAY-1 TASK-7
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: service_restart
+
+
+    
+
+    
